@@ -12,7 +12,8 @@ class SendOrMessageIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       width: recordingState.isRecording ? mqHeigth(context, recordingState.isRecording ? 12 : 10) : mqWidth(context, recordingState.isRecording ? 12 : 10),
       height: recordingState.isRecording ? mqHeigth(context, recordingState.isRecording ? 12 : 10) : mqWidth(context, recordingState.isRecording ? 12 : 10),
       decoration: BoxDecoration(
