@@ -5,7 +5,6 @@ import 'package:clase_flutter_demo/recording_state.dart';
 import 'package:clase_flutter_demo/send_or_message_icon.dart';
 import 'package:clase_flutter_demo/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ChatMessageComposer extends StatefulWidget {
   const ChatMessageComposer({super.key});
@@ -35,8 +34,16 @@ class _ChatMessageComposerState extends State<ChatMessageComposer> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: const Color(0xffEBF0F7),
-              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 1,
+                  offset: const Offset(0, 1), 
+                ),
+              ]
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,3 +1,4 @@
+import 'package:clase_flutter_demo/body_content.dart';
 import 'package:clase_flutter_demo/chat_message_composer.dart';
 import 'package:flutter/material.dart';
 
@@ -17,12 +18,10 @@ class ClaseFlutterDemo extends StatelessWidget{
             appBar: AppBar(
               title: const Text('Chat App'),
             ),
-            body: Column(
+            body: const Column(
               children: [
-                Expanded(
-                  child: Container()
-                ),
-                const ChatMessageComposer()
+                BodyContent(),
+                ChatMessageComposer()
               ],
             )
           );
