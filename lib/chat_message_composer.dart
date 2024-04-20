@@ -15,8 +15,8 @@ class ChatMessageComposer extends StatefulWidget {
 
 class _ChatMessageComposerState extends State<ChatMessageComposer> {
   RecordingState recordingState = RecordingState.free;
-  Offset _dragOffset = Offset.zero;
-  Offset _dragOffsetInitial = Offset.zero;
+  Offset _dragOffset = Offset(0, 800);
+  final _dragOffsetInitial = Offset(0, 800);
   String _recorderTxt = "0:00"; 
 
   @override
@@ -119,11 +119,14 @@ class _ChatMessageComposerState extends State<ChatMessageComposer> {
         //Componente de candado
         Builder(
           builder: (context) {
-            final diff = _dragOffsetInitial.dy - _dragOffset.dy;
+            // final diff = _dragOffsetInitial.dy - _dragOffset.dy;
+            final diff = _dragOffset.dy - 800;
+            print(diff);
             return AnimatedPositioned(
               duration: Duration(milliseconds: recordingState.isBlocked ? 100 : 300),
               right: mqWidth(context, 6),
-              top: recordingState.isBlocked ? mqHeigth(context, - 8 ) : mqHeigth(context, recordingState.isRecording ? -12 : 4) - (recordingState.isRecording ? diff / 2 : 0),
+              // top: recordingState.isBlocked ? mqHeigth(context, - 8 ) : mqHeigth(context, recordingState.isRecording ? -12 : 4) - (recordingState.isRecording ? diff / 2 : 0),
+              top: recordingState.isBlocked ? mqHeigth(context, - 8 ) :  recordingState == RecordingState.free ? 0 : diff,
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
                 opacity: recordingState.isRecording ? 1.0 : 0.0,
@@ -163,8 +166,8 @@ class _ChatMessageComposerState extends State<ChatMessageComposer> {
                 setState(() {});
               },
               onDragEnd: (_){
-                _dragOffsetInitial = Offset.zero;
-                _dragOffset = Offset.zero;
+                // _dragOffsetInitial = Offset.zero;
+                _dragOffset = _dragOffsetInitial;
                 print("Finalizamos la grabación y se envía");
                 if(recordingState == RecordingState.recording){
                   recordingState = RecordingState.free;
@@ -172,11 +175,12 @@ class _ChatMessageComposerState extends State<ChatMessageComposer> {
                 setState(() {});
               },
               onDragUpdate: (details){
-                print(details.localPosition.dy);
+                // print(details.localPosition.dy);
                 _dragOffset = details.localPosition;
-                if(_dragOffsetInitial.dy == 0){
-                  _dragOffsetInitial = _dragOffset;
-                }
+                print("Drag offset $_dragOffset");
+                // if(_dragOffsetInitial.dy == 0){
+                  // _dragOffsetInitial = _dragOffset;
+                // }
                 if(details.localPosition.dy < 500){
                   print("Bloqueamos al estado de grabando, ya se puede soltar");
                   recordingState = RecordingState.blocked;
