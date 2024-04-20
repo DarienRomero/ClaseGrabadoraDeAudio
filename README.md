@@ -1,6 +1,6 @@
 # clase_flutter_demo
 
-A new Flutter project.
+Flutter 3.19.2
 
 ## Getting Started
 
