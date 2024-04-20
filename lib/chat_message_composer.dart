@@ -172,7 +172,7 @@ class _ChatMessageComposerState extends State<ChatMessageComposer> {
                 setState(() {});
               },
               onDragUpdate: (details){
-                print(details.localPosition.dx);
+                print(details.localPosition.dy);
                 _dragOffset = details.localPosition;
                 if(_dragOffsetInitial.dy == 0){
                   _dragOffsetInitial = _dragOffset;
